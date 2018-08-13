@@ -1,7 +1,7 @@
 import json
 import requests
 import datetime
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render,HttpResponse,redirect
 from django.core.exceptions import ObjectDoesNotExist
 # from .models import premier_users
 import csv
@@ -17,8 +17,10 @@ import requests
 import json
 from os import chdir
 import xlwt
-from .forms import PremierReportForm,journalEntryForm
+from .forms import PremierReportForm
+
 from .models import premier_log_refined,entry_journals
+from .forms import EntryJournalFormset
 
 
 # Create your views here.
@@ -144,28 +146,60 @@ def premierdemands_report(request):
     return render(request,'reports.html', context)
 
 def journal_entry(request):
-    journal_form =journalEntryForm(request.POST or None)
+    if request.method == 'GET':
+        formset = EntryJournalFormset(request.GET or None)
+    elif request.method == 'POST':
+        formset = EntryJournalFormset(request.POST or None) 
+        if formset.is_valid():
+            for form in formset:
+                debit = form.cleaned_data['debit']
+                debit_gl= form.cleaned_data['debit_gl']
+                debit_branch=form.cleaned_data['debit_branch']
+                credit = form.cleaned_data['credit']
+                credit_gl=form.cleaned_data['credit_gl']
+                credit_branch=form.cleaned_data['credit_branch']
+                entryDate=form.cleaned_data['entryDate']
+                notes=form.cleaned_data['notes']
+
+                # if debit,debit_gl,debit_branch,credit,credit_gl,credit_branch,entryDate,notes:
+
+                entry_journals(
+                    debit_amount= debit,
+                    debit_glaccount=debit_gl,
+                    debit_branch=debit_branch,
+                    credit_amount=credit,
+                    credit_glaccount=credit_gl,
+                    credit_branch=credit_branch,
+                    entry_date=entryDate,
+                    notes=notes
+                ).save()
+    return render(request,'journal_entry.html', {'form':formset})
+               
+
+
+# def journal_entry(request):
+#     journal_form =journalEntryForm(request.POST or None)
     
-    if journal_form.is_valid():
-        debit = journal_form.cleaned_data['debit']
-        debit_gl= journal_form.cleaned_data['debit_gl']
-        debit_branch=journal_form.cleaned_data['debit_branch']
-        credit = journal_form.cleaned_data['credit']
-        credit_gl=journal_form.cleaned_data['credit_gl']
-        credit_branch=journal_form.cleaned_data['credit_branch']
-        entryDate=journal_form.cleaned_data['entryDate']
-        notes=journal_form.cleaned_data['notes']
+#     if journal_form.is_valid():
+#         debit = journal_form.cleaned_data['debit']
+#         debit_gl= journal_form.cleaned_data['debit_gl']
+#         debit_branch=journal_form.cleaned_data['debit_branch']
+#         credit = journal_form.cleaned_data['credit']
+#         credit_gl=journal_form.cleaned_data['credit_gl']
+#         credit_branch=journal_form.cleaned_data['credit_branch']
+#         entryDate=journal_form.cleaned_data['entryDate']
+#         notes=journal_form.cleaned_data['notes']
 
-        entry_journals(
-            debit_amount= debit,
-            debit_glaccount=debit_gl,
-            debit_branch=debit_branch,
-            credit_amount=credit,
-            credit_glaccount=credit_gl,
-            credit_branch=credit_branch,
-            entry_date=entryDate,
-            notes=notes
-        ).save()
+#         entry_journals(
+#             debit_amount= debit,
+#             debit_glaccount=debit_gl,
+#             debit_branch=debit_branch,
+#             credit_amount=credit,
+#             credit_glaccount=credit_gl,
+#             credit_branch=credit_branch,
+#             entry_date=entryDate,
+#             notes=notes
+#         ).save()
 
-    context= { 'form': journal_form}
-    return render(request,'journal_entry.html', context)
+#     context= { 'form': journal_form}
+#     return render(request,'journal_entry.html', context)
