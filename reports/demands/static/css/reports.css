@@ -1,0 +1,17 @@
+.retriev_btn {
+    display: block;
+    width: 22%;
+    padding-left: 0;
+    padding-right: 0;
+    font-style: normal;
+    font-size: 22px;
+    color: #4c494e;
+    margin-left: 40%;
+}
+
+.form-control {
+    display: block;
+    width: 22%;
+    height: 40px;
+    background-color: #ebebeb
+}

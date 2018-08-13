@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block content %}{% load static %} {% block style %}
+<link rel="stylesheet" href="{% static 'css/journals.css' %}"> {% endblock style %} {% block scripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="{% static 'js/reports_dates.js' %}"></script>
+{% endblock scripts %}
+<div class="container-fluid">
+    <div class="whole_table">
+        <h3 class="panel-title">New Journal Entry</h3>
+        <form method="post">
+            {% csrf_token %}
+            <div class="">
+                <div class="panel-body">
+                    <div class="panel panel-default">
+                        {% comment %}
+                        <div class="panel-heading">Report Filters for Demands</div> {% endcomment %}
+                        <div class="panel-body">
+                            {{ form|crispy }}
+                            <button type="submit" class="btn btn-block btn-default retriev_btn">Send</button> {% comment %} <button type="submit" class="log_journal">Log journal Entry</button>
+                            <button type="submit" class="cancel_btn">Cancel</button> {% endcomment %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
