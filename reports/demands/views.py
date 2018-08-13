@@ -21,6 +21,8 @@ from .forms import PremierReportForm
 
 from .models import premier_log_refined,entry_journals
 from .forms import EntryJournalFormset
+from .forms import BookFormset
+from .models import Book
 
 
 # Create your views here.

@@ -207,4 +207,16 @@ class EntryJournalForm(forms.Form):
     notes = forms.CharField(widget=forms.Textarea(attrs={'class' : 'notesform'}),required=True,label='Notes')
 
 EntryJournalFormset= formset_factory(EntryJournalForm, extra=1)
-    
+
+
+
+
+class BookForm(forms.Form):
+    name = forms.CharField(
+        label='Book Name',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter Book Name here'
+        })
+    )
+BookFormset = formset_factory(BookForm, extra=1)
