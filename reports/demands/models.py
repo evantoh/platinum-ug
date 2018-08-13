@@ -22,7 +22,6 @@ class entry_journals(models.Model):
         return self.notes
 
 class Book(models.Model):
-
     name = models.CharField(max_length=255)
     isbn_number = models.CharField(max_length=13)
 
