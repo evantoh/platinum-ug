@@ -26,6 +26,27 @@ from .models import Book
 
 
 # Create your views here.
+def create_book_normal(request):
+    template_name = 'test/create_normal.html'
+    heading_message = 'Formset Demo'
+    if request.method == 'GET':
+        formset = BookFormset(request.GET or None)
+    elif request.method == 'POST':
+        formset = BookFormset(request.POST)
+        if formset.is_valid():
+            for form in formset:
+                # extract name from each form and save
+                name = form.cleaned_data.get('name')
+                # save book instance
+                if name:
+                    Book(name=name).save()
+            # once all books are saved, redirect to book list view
+            # return redirect('')
+    return render(request, template_name, {
+        'formset': formset,
+        'heading': heading_message,
+    })
+
 def premium_users(request):
     paramdetails = {'fullDetails':'True', 'offset':'0', 'limit':'1000'}
     url = "https://premierkenya.sandbox.mambu.com/api/users"

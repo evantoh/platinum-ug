@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block content %}{% load static %} {% block style %}
+<link rel="stylesheet" href="{% static 'css/journals.css' %}"> {% endblock style %} {% block scripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="{% static 'js/normal_test.js' %}"></script>
+{% endblock scripts %}
+<form class="form-horizontal" method="POST" action="">
+    {% csrf_token %} {{ formset.management_form }} {% for form in formset %}
+    <div class="row form-row spacer">
+        <div class="col-2">
+            <label>{{form.name.label}}</label>
+        </div>
+        <div class="col-4">
+            <div class="input-group">
+                {{form.name}}
+                <div class="input-group-append">
+                    <button class="btn btn-success add-form-row">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="row spacer">
+        <div class="col-4 offset-2">
+            <button type="submit">Create</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
