@@ -1,15 +1,18 @@
 function updateElementIndex(el, prefix, ndx) {
     var id_regex = new RegExp('(' + prefix + '-\\d+)');
     var replacement = prefix + '-' + ndx;
+    if ($(v).attr("id") != "" && typeof $(v).attr("id") != 'undefined');
     if ($(el).attr("for")) $(el).attr("for", $(el).attr("for").replace(id_regex, replacement));
     if (el.id) el.id = el.id.replace(id_regex, replacement);
     if (el.name) el.name = el.name.replace(id_regex, replacement);
+
 }
 
 function cloneMore(selector, prefix) {
     var newElement = $(selector).clone(true);
     var total = $('#id_' + prefix + '-TOTAL_FORMS').val();
     newElement.find(':input').each(function() {
+        var name = $('#name');
         var name = $(this).attr('name').replace('-' + (total - 1) + '-', '-' + total + '-');
         var id = 'id_' + name;
         $(this).attr({ 'name': name, 'id': id }).val('').removeAttr('checked');
