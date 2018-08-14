@@ -13,11 +13,12 @@
             <div class="">
                 <div class="panel-body">
                     <div class="panel panel-default">
+
                         <div class="panel-body">
                             {{ form|crispy }}
 
-                            <button type="submit" class="btn btn-block btn-default retriev_btn">Send</button>
-
+                            <button type="submit" class="btn btn-block btn-default retriev_btn">Send</button> {% comment %} <button type="submit" class="log_journal">Log journal Entry</button>
+                            <button type="submit" class="cancel_btn">Cancel</button> {% endcomment %}
                         </div>
 
                     </div>

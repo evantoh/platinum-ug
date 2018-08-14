@@ -1,7 +1,10 @@
 from django import forms
 import datetime
 import requests
+from .models import entry_journals
 from django.forms import formset_factory
+
+
 
 class PremierReportForm(forms.Form):
     
@@ -206,7 +209,7 @@ class EntryJournalForm(forms.Form):
     entryDate = forms.DateField(widget=forms.TextInput(attrs={'class':'datepicker'}),required=True, label='Entry Date')
     notes = forms.CharField(widget=forms.Textarea(attrs={'class' : 'notesform'}),required=True,label='Notes')
 
-EntryJournalFormset= formset_factory(EntryJournalForm, extra=1)
+EntryJournalFormset= formset_factory(EntryJournalForm, extra=2)
 
 
 
@@ -220,3 +223,15 @@ class BookForm(forms.Form):
         })
     )
 BookFormset = formset_factory(BookForm, extra=1)
+
+class DebitForm(forms.Form):
+    debit=forms.DecimalField(widget=forms.TextInput(attrs={'class' : 'debitform1','placeholder': 'Ksh'}),max_digits=10, decimal_places=2,required=True, label='Debit')
+    debit_gl = forms.ChoiceField(required=True,label='debit glaccount', widget=forms.Select(attrs={'class':'debit_glform1'}))
+    debit_branch = forms.ChoiceField(required=True,label='debit_branch',widget=forms.Select(attrs={'class':'debit_branch1'}))
+DebitFormset = formset_factory(DebitForm, extra=1)
+
+class CreditForm(forms.Form):
+    credit=forms.DecimalField(widget=forms.TextInput(attrs={'class' : 'debitform1','placeholder': 'Ksh'}),max_digits=10, decimal_places=2,required=True, label='Debit')
+    credit_gl = forms.ChoiceField(required=True,label='debit glaccount', widget=forms.Select(attrs={'class':'debit_glform1'}))
+    credit_branch = forms.ChoiceField(required=True,label='debit_branch',widget=forms.Select(attrs={'class':'debit_branch1'}))
+CreitFormset = formset_factory(CreditForm, extra=1)

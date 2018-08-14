@@ -29,12 +29,33 @@
     height: 30px;
 }
 
+.debitform1 {
+    max-width: 111px;
+    height: 38px;
+    margin-left: -458px;
+    margin-top: 25px;
+}
+
+.debit_glform1 {
+    height: 35px;
+    margin-top: 25px;
+    margin-left: -370px;
+    width: 140px;
+}
+
 .debit_glform,
 .credit_glform {
     max-width: 240px;
     height: 30px;
     margin-left: 160px;
     margin-top: -45px;
+}
+
+.debit_branch1 {
+    width: 150px;
+    height: 35px;
+    margin-left: -280px;
+    margin-top: 26px;
 }
 
 .debit_branch,
