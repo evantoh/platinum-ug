@@ -29,33 +29,12 @@
     height: 30px;
 }
 
-.debitform1 {
-    max-width: 111px;
-    height: 38px;
-    margin-left: -458px;
-    margin-top: 25px;
-}
-
-.debit_glform1 {
-    height: 35px;
-    margin-top: 25px;
-    margin-left: -370px;
-    width: 140px;
-}
-
 .debit_glform,
 .credit_glform {
     max-width: 240px;
     height: 30px;
     margin-left: 160px;
     margin-top: -45px;
-}
-
-.debit_branch1 {
-    width: 150px;
-    height: 35px;
-    margin-left: -280px;
-    margin-top: 26px;
 }
 
 .debit_branch,
@@ -99,7 +78,7 @@
 
 /* logging new journal entry btn */
 
-.log_journal {
+.retriev_btn {
     border-radius: 2px;
     background-image: -moz-linear-gradient(100% 100% 90deg, #8ab131, #c7ff47);
     background-image: -webkit-gradient(linear, 0% 100%, 0% 0%, from(#8AB131), to(#C7FF47));
@@ -108,7 +87,7 @@
     cursor: pointer;
     font-size: 12px;
     font-weight: bold;
-    margin-left: 5px;
+    margin-right: 300px;
     padding: 3px 15px;
     text-shadow: 0 0 1px white;
     font-family: helvetica neue, helvetica, arial, sans-serif;
