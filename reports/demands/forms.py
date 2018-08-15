@@ -6,6 +6,7 @@ from django.forms import formset_factory
 
 
 
+
 class PremierReportForm(forms.Form):
     
     TYPES  = [
@@ -231,7 +232,7 @@ class DebitForm(forms.Form):
 DebitFormset = formset_factory(DebitForm, extra=1)
 
 class CreditForm(forms.Form):
-    credit=forms.DecimalField(widget=forms.TextInput(attrs={'class' : 'debitform1','placeholder': 'Ksh'}),max_digits=10, decimal_places=2,required=True, label='Debit')
-    credit_gl = forms.ChoiceField(required=True,label='debit glaccount', widget=forms.Select(attrs={'class':'debit_glform1'}))
-    credit_branch = forms.ChoiceField(required=True,label='debit_branch',widget=forms.Select(attrs={'class':'debit_branch1'}))
+    credit=forms.DecimalField(widget=forms.TextInput(attrs={'class' : 'debitform1','placeholder': 'Ksh'}),max_digits=10, decimal_places=2,required=True, label='Credit')
+    credit_gl = forms.ChoiceField(required=True,label='credit_gl', widget=forms.Select(attrs={'class':'debit_glform1'}))
+    credit_branch = forms.ChoiceField(required=True,label='credit_branch',widget=forms.Select(attrs={'class':'debit_branch1'}))
 CreitFormset = formset_factory(CreditForm, extra=1)

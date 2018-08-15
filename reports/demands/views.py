@@ -21,22 +21,26 @@ from .forms import PremierReportForm
 
 from .models import premier_log_refined,entry_journals
 from .forms import EntryJournalForm
-from .forms import BookFormset,EntryJournalFormset,DebitFormset,CreditForm
+from .forms import BookFormset,EntryJournalFormset,DebitFormset,CreitFormset
 from .models import Book
 def debit_form(request):
     if request.method == 'GET':
         debit_formset = DebitFormset(request.GET or None)
+        credit_formset = CreitFormset(request.GET or None)
     elif request.method == 'POST':
         debit_formset = DebitFormset(request.POST)
-        if debit_formset.is_valid():
-            for form in debit_formset:
+        credit_formset = CreitFormset(request.POST)
+        if debit_formset.is_valid() and credit_formset.is_valid():
+            for debit_formset in debit_formset:
                 # extract name from each form and save
-                name = form.cleaned_data.get('name')
-                # save book instance
-                if name:
-                    Book(name=name).save()
+                name = debit_formset.cleaned_data.get('name')
+                Book(name=name).save()
+            for credit_formset in credit_formset:
+                # extract name from each form and save
+                name = debit_formset.cleaned_data.get('name')
+
     return render(request, 'debit.html',{
-        'debit_formset': debit_formset,
+        'debit_formset': debit_formset,'credit_formset':credit_formset,
     })
 
 

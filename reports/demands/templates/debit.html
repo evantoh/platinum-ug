@@ -9,7 +9,7 @@
     <div class="whole_table">
         <h3 class="panel-title">New Journal Entry</h3>
         <form class="form-horizontal" method="post">
-            {% csrf_token %} {{ form.management_form }} {% for form in debit_formset %}
+            {% csrf_token %} {% for form in debit_formset %}
             <div class="row form-row spacer">
                 <div class="col-md-2">
                     <label>{{form.debit.label}}</label>
