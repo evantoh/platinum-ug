@@ -30,3 +30,11 @@ class Book(models.Model):
 
     def __str__(self):
         return self.name
+
+# create gl_accounts which are activated and allowManualJournalEntries are true
+class Gl_accounts(models.Model):
+    encoded_key=models.CharField(max_length=255)
+    glCode=models.CharField(max_length=255)
+    name=models.CharField(max_length=255)
+
+    
