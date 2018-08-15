@@ -22,7 +22,28 @@ from .forms import PremierReportForm
 from .models import premier_log_refined,entry_journals
 from .forms import EntryJournalForm
 from .forms import BookFormset,EntryJournalFormset,DebitFormset,CreitFormset
-from .models import Book
+from .models import Book,Gl_accounts
+
+# function to create the gl_accounts of all type
+# def save_glaccounts(request):
+#     url = "https://momentumcreditltd.sandbox.mambu.com/api/glaccounts?type=EXPENSE&allowManualJournalEntries=true&activated=true"
+#     gl_accounts = requests.get(url, auth=('BACKUPTEST', 'backup123!@#123'))
+#     glaccountsjson =gl_accounts.json()
+
+
+#     for rw in glaccountsjson:
+#         encoded_key=rw.get('encodedKey')
+#         glcode=rw.get('glCode')
+#         name=rw.get('name')
+
+#         Gl_accounts(
+#             encoded_key=encoded_key,
+#             glCode=glcode,
+#             name=name
+#         ).save()
+#     return HttpResponse('data successfully saved gl-accounts type expense')
+
+
 def debit_form(request):
     if request.method == 'GET':
         debit_formset = DebitFormset(request.GET or None)

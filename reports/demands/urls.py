@@ -10,4 +10,5 @@ urlpatterns = [
     path('create_book/', views.create_book_normal, name='book_journal'),
     path('journal_test/',views.journal_test,name="journal_test"),
     path('debit_test/',views.debit_form,name="debit_test"),
+    # path('save_glaccounts/',views.save_glaccounts,name="glaccounts"),
 ]
