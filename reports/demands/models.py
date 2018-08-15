@@ -18,6 +18,7 @@ class entry_journals(models.Model):
     entry_date=models.DateField(max_length=32,null=True, blank=True)
     notes=models.CharField(max_length=255)
     status=models.CharField(max_length=20,null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
         return self.notes
