@@ -60,7 +60,7 @@ class EntryJournalForm(forms.Form):
     entryDate = forms.DateField(widget=forms.TextInput(attrs={'class':'datepicker'}),required=True, label='Entry Date')
     notes = forms.CharField(widget=forms.Textarea(attrs={'class' : 'notesform'}),required=True,label='Notes')
 
-EntryJournalFormset= formset_factory(EntryJournalForm, extra=2)
+# EntryJournalFormset= formset_factory(EntryJournalForm, extra=2)
 
 
 
