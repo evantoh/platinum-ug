@@ -19,7 +19,7 @@ from os import chdir
 import xlwt
 from .forms import PremierReportForm
 
-from .models import premier_log_refined,entry_journals
+from .models import premier_log_refined,Journal_Entry
 from .forms import EntryJournalForm
 from .forms import BookFormset,DebitFormset,CreitFormset
 from .models import Book,Gl_accounts
@@ -255,7 +255,7 @@ def journal_entry(request):
         entryDate=journal_form.cleaned_data['entryDate']
         notes=journal_form.cleaned_data['notes']
 
-        entry_journals(
+        Journal_Entry(
             debit_amount= debit_amount,
             debit_glaccount=debit_glaccount,
             debit_branch=debit_branch,

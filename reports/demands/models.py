@@ -8,14 +8,13 @@ class premier_log_refined(models.Model):
     status_date=models.DateField(null=True, blank=True)
     date_generated = models.DateField(max_length=32,null=True, blank=True)
 
-class entry_journals(models.Model):
+class Journal_Entry(models.Model):
     debit_amount=models.DecimalField(max_digits=10, decimal_places=2)
     debit_glaccount=models.CharField(max_length=32)
     debit_branch=models.CharField(max_length=255)
     credit_amount=models.DecimalField(max_digits=10, decimal_places=2)
     credit_glaccount=models.CharField(max_length=32)
     credit_branch=models.CharField(max_length=255)
-    entry_date=models.DateField(max_length=32,null=True, blank=True)
     notes=models.CharField(max_length=255)
     status=models.CharField(max_length=20,null=True)
     created_at = models.DateTimeField(auto_now_add=True)

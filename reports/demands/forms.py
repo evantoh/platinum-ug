@@ -1,7 +1,7 @@
 from django import forms
 import datetime
 import requests
-from .models import entry_journals
+from .models import Journal_Entry
 from django.forms import formset_factory
 from .models import Gl_accounts
 
