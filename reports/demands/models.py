@@ -11,12 +11,13 @@ class premier_log_refined(models.Model):
 class entry_journals(models.Model):
     debit_amount=models.DecimalField(max_digits=10, decimal_places=2)
     debit_glaccount=models.CharField(max_length=32)
-    debit_branch=models.CharField(max_length=20)
+    debit_branch=models.CharField(max_length=255)
     credit_amount=models.DecimalField(max_digits=10, decimal_places=2)
     credit_glaccount=models.CharField(max_length=32)
-    credit_branch=models.CharField(max_length=20)
+    credit_branch=models.CharField(max_length=255)
     entry_date=models.DateField(max_length=32,null=True, blank=True)
-    notes=models.CharField(max_length=200)
+    notes=models.CharField(max_length=255)
+    status=models.CharField(max_length=20,null=True)
     
     def __str__(self):
         return self.notes
