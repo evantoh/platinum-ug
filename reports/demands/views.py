@@ -21,7 +21,7 @@ from .forms import PremierReportForm
 
 from .models import premier_log_refined,entry_journals
 from .forms import EntryJournalForm
-from .forms import BookFormset,EntryJournalFormset,DebitFormset,CreitFormset
+from .forms import BookFormset,DebitFormset,CreitFormset
 from .models import Book,Gl_accounts
 
 # function to create the gl_accounts of all type
@@ -227,18 +227,18 @@ def journal_test(request):
 
                 # if debit,debit_gl,debit_branch,credit,credit_gl,credit_branch,entryDate,notes:
 
-                entry_journals(
-                    debit_amount= debit,
-                    debit_glaccount=debit_gl,
-                    debit_branch=debit_branch,
-                    credit_amount=credit,
-                    credit_glaccount=credit_gl,
-                    credit_branch=credit_branch,
-                    entry_date=entryDate,
-                    notes=notes
-                ).save()
+                # entry_journals(
+                #     debit_amount= debit,
+                #     debit_glaccount=debit_gl,
+                #     debit_branch=debit_branch,
+                #     credit_amount=credit,
+                #     credit_glaccount=credit_gl,
+                #     credit_branch=credit_branch,
+                #     entry_date=entryDate,
+                #     notes=notes
+                # ).save()
 
-    return render(request,'journal_entry.html', {'form':formset})
+    # return render(request,'journal_entry.html', {'form':formset})
                
 
 
@@ -246,25 +246,26 @@ def journal_entry(request):
     journal_form =EntryJournalForm(request.POST or None)
     
     if journal_form.is_valid():
-        debit = journal_form.cleaned_data['debit']
-        debit_gl= journal_form.cleaned_data['debit_gl']
+        debit_amount = journal_form.cleaned_data['debit']
+        debit_glaccount= journal_form.cleaned_data['debit_gl']
         debit_branch=journal_form.cleaned_data['debit_branch']
-        credit = journal_form.cleaned_data['credit']
-        credit_gl=journal_form.cleaned_data['credit_gl']
+        credit_amount = journal_form.cleaned_data['credit']
+        credit_glaccount=journal_form.cleaned_data['credit_gl']
         credit_branch=journal_form.cleaned_data['credit_branch']
         entryDate=journal_form.cleaned_data['entryDate']
         notes=journal_form.cleaned_data['notes']
 
-        # entry_journals(
-        #     debit_amount= debit,
-        #     debit_glaccount=debit_gl,
-        #     debit_branch=debit_branch,
-        #     credit_amount=credit,
-        #     credit_glaccount=credit_gl,
-        #     credit_branch=credit_branch,
-        #     entry_date=entryDate,
-        #     notes=notes
-        # ).save()
+        entry_journals(
+            debit_amount= debit_amount,
+            debit_glaccount=debit_glaccount,
+            debit_branch=debit_branch,
+            credit_amount=credit_amount,
+            credit_glaccount=credit_glaccount,
+            credit_branch=credit_branch,
+            entry_date=entryDate,
+            notes=notes,
+            status="pending"
+        ).save()
 
     context= { 'form': journal_form}
     return render(request,'journal_entry.html', context)
